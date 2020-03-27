@@ -10,7 +10,7 @@
  * removing a life from the scoreboard*/
 
  //create a 
-class Game{
+ class Game{
     constructor(){
         //track number of missed guessess
         this.missed = 0;
@@ -25,12 +25,39 @@ class Game{
     * @return {array} An array of phrases that could be used in the game */
     createPhrases() {
         return [
-            `zombies`,
-            `vampires`,
-            `wearwolves`,
-            `demon`,
-            `count dracula`
+            {phrase: `zombies`},
+            {phrase: `vampires`},
+            {phrase: `wearwolves`},
+            {phrase: `demon`},
+            {phrase: `count dracula`}
         ];
     };
 
+    /**
+     * Selects random phrase from phrases property
+     * @return {Object} Phrase object chosen to be used
+     */
+    getRandomPhrase() {
+        console.log(this.phrases.length);
+        let randomNumber = Math.floor(Math.random() * this.phrases.length);
+        console.log(randomNumber);
+        let randomPhrase = this.phrases[randomNumber];
+        return randomPhrase;
+    };
+
+    /**
+     * Begins game by selecting a random phrase and displaying it to user
+     */
+    startGame() {
+        //hide #overlay div
+        const overlayDiv = document.querySelector('#overlay');
+        overlayDiv.style.display = 'none';
+        
+        //store selected phrase into 'activePhrase'
+        //calls the getRandomPhrase method to select a Phrase object
+        this.activePhrase = this.getRandomPhrase();
+        console.log(this.activePhrase);
+        //adds phrase to gameboard
+        this.activePhrase = this.addPhraseToDisplay();
+    };
 }
