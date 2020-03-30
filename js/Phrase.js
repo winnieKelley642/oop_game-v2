@@ -40,4 +40,40 @@
            }
        };
    };
-}  
+
+   /**
+    * Checks if passed letter is in phrase
+    * @param (string) letter - Letter to check
+    */
+   checkLetter(letter) {
+       //checks for letter selected by player
+       for(let i = 0; i < this.phrase.length; i++){
+           console.log(`phrase is ${this.phrase.charAt(i)}`);
+           console.log(`letter is: ${letter.textContent}`);
+           if(this.phrase.charAt(i) === letter.textContent){
+               console.log('true');
+               return(true);
+           }else{
+               console.log('false');
+               return(false);
+           }
+       }
+   };
+
+   /**
+    * Displays passed letter on screen after a match is found
+    * @param (string) letter - Letter to display
+    */
+   showMatchedLetter(letter) {
+       //reveals letter(s) on the board that matches player selection
+       //select all of the letter DOM elements that have a CSS class name that matches the selected letter 
+       console.log(this.phrase);
+       if(this.checkLetter(letter) === 'false'){
+           console.log(`no match`);
+       }
+
+       if(this.checkLetter(letter) === 'true'){
+           console.log(`match`);
+       }
+   };
+}

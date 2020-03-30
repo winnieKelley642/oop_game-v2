@@ -24,21 +24,21 @@
     * Creates phrases for use in game
     * @return {array} An array of phrases that could be used in the game */
     createPhrases() {
-        return [
-            {phrase: `zombies`},
-            {phrase: `vampires`},
-            {phrase: `wearwolves`},
-            {phrase: `demon`},
-            {phrase: `count dracula`}
-        ];
+        let phrases = [
+            new Phrase(`zombies`),
+            new Phrase(`vampires`),
+            new Phrase(`wearwolves`),
+            new Phrase(`demon`),
+            new Phrase(`count dracula`)
+        ]
+        return phrases;
     };
 
     /**
      * Selects random phrase from phrases property
      * @return {Object} Phrase object chosen to be used
      */
-    getRandomPhrase() {
-        console.log(this.phrases.length);
+    getRandomPhrase(){
         let randomNumber = Math.floor(Math.random() * this.phrases.length);
         console.log(randomNumber);
         let randomPhrase = this.phrases[randomNumber];
@@ -55,9 +55,8 @@
         
         //store selected phrase into 'activePhrase'
         //calls the getRandomPhrase method to select a Phrase object
-        this.activePhrase = this.getRandomPhrase();
-        console.log(this.activePhrase);
-        //adds phrase to gameboard
-        this.activePhrase = this.addPhraseToDisplay();
+        const randomPhrase =  this.getRandomPhrase()
+        randomPhrase.addPhraseToDisplay()
+        this.activePhrase =  randomPhrase;
     };
 }

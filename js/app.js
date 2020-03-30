@@ -41,6 +41,26 @@
 // phrase.addPhraseToDisplay();
 
 // Step 7 making sure startGame() works
-const game = new Game();
-game.startGame();
-console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+// const game = new Game();
+// game.startGame();
+// console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+
+//Step 8 create event listener for "Start Game" button on page load
+let game = new Game();
+const startGameButton = document.querySelector('#btn__reset');
+startGameButton.addEventListener('click', (e) =>{
+    game.startGame();
+});
+
+//Step 9 when user clicks onscreen keyboard buttons:
+//store what onscreenKey user pressed 
+const onscreenKeyboard = document.querySelectorAll('.key');
+for(let i = 0; i < onscreenKeyboard.length; i++){
+    onscreenKeyboard[i].addEventListener('click', (e) =>{
+        let onscreenKeyClicked = e.target;
+        //test checkLetter
+        game.activePhrase.checkLetter(onscreenKeyClicked);
+        //test showMatchedLetter
+        game.activePhrase.showMatchedLetter(onscreenKeyClicked);
+    });
+};
