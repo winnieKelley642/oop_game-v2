@@ -37,6 +37,7 @@
                li.setAttribute('class', `hide space`);
            } else{
                li.setAttribute('class', `hide letter ${this.phrase.charAt(i)}`);
+               li.textContent = this.phrase.charAt(i);
            }
        };
    };
@@ -70,9 +71,9 @@
            console.log(letterElement);
            console.log(letterElement.textContent);
            if(letterElement.innerHTML === letter.textContent){
-               letterElement[i].classList.remove('hide');
+               letterElement.classList.remove('hide');
                console.log(letterElement);
-               letterElement[i].classList.add('show');
+               letterElement.classList.add('show');
            }
        });
    };

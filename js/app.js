@@ -59,8 +59,13 @@ for(let i = 0; i < onscreenKeyboard.length; i++){
     onscreenKeyboard[i].addEventListener('click', (e) =>{
         let onscreenKeyClicked = e.target;
         //test checkLetter
-        game.activePhrase.checkLetter(onscreenKeyClicked);
+        // game.activePhrase.checkLetter(onscreenKeyClicked);
         //test showMatchedLetter
-        game.activePhrase.showMatchedLetter(onscreenKeyClicked);
+        // game.activePhrase.showMatchedLetter(onscreenKeyClicked);
+        //test checkForWin()
+        // game.checkForWin();
+        //test handleInteraction
+        game.handleInteraction(onscreenKeyClicked);
+  
     });
 };

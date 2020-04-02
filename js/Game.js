@@ -49,6 +49,8 @@
      * Begins game by selecting a random phrase and displaying it to user
      */
     startGame() {
+        //reset game board
+        this.resetGame();
         //hide #overlay div
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.style.display = 'none';
@@ -58,5 +60,118 @@
         const randomPhrase =  this.getRandomPhrase()
         randomPhrase.addPhraseToDisplay()
         this.activePhrase =  randomPhrase;
+    };
+
+    /**
+     * Checks for winning move
+     * @return {boolean} True if game has been won, false if game wasn't
+    won */
+    checkForWin() {
+        console.log(`number of letters in phrase: ${this.phrases.length}`);
+        const correctLetter = document.querySelectorAll('.hide');
+        console.log(`correctLetter = ${correctLetter.length}`);
+        if(correctLetter.length === 0){
+            console.log(`you win`);
+            this.gameOver(true);
+            return true;
+        }else{
+            console.log(`haven't won yet`);
+            return false;
+        }
+    };
+
+    /**
+     * Increases the value of the missed property
+     * Removes a life from the scoreboard
+     * Checks if player has remaining lives and ends game if player is out
+     */
+    removeLife() {
+        //increase value of missed property:
+        console.log(`missed start: ${this.missed}`);
+        this.missed++;
+        console.log(`missed end: ${this.missed}`);
+        //get heart images:
+        const heartImage = document.querySelectorAll('.tries img');
+        console.log(heartImage.length);
+        //remove a life from scoreboard
+        if(this.missed > 0 && this.missed <= 5){
+            heartImage[this.missed - 1].src = ('images/lostHeart.png');
+        }
+        //checks remaining lives:
+        if(this.missed >= 5){
+            this.gameOver(false);
+        }
+    };
+
+    /**
+     * Displays game over message
+     * @param {boolean} gameWon - Whether or not the user won the game
+     */
+    gameOver(gameWon) {
+        console.log(`game over`);
+        const overlayDiv = document.querySelector('#overlay');
+        overlayDiv.style.display= 'block';
+        const gameOverMessage = document.querySelector('#game-over-message');
+        
+            gameOverMessage.textContent = (`Aw man! GAME OVER! You lost`);
+            overlayDiv.className = ('lose');
+
+        //win
+        if(gameWon === true){
+            gameOverMessage.textContent = ("Yea Buddy! You Won!");
+            overlayDiv.className = ('win');
+        }
+    };
+
+    /**
+     * reset game after it's over
+     */
+    resetGame(){
+        //set overlay back to normal
+        const overlayDiv = document.querySelector('#overlay');
+        overlayDiv.className = ('start');
+
+        //remove all 'li' elements from Phrase 'ul'
+        const ul = document.querySelector('ul');
+        ul.textContent = '';
+
+        //enable all onscreen keyboard buttons
+        const keyRow = document.querySelectorAll('.keyrow');
+        console.log(`keyRow length: ${keyRow.length}`);
+        for(let i = 0; i < keyRow.length; i++){
+            for(let j = 0; j < keyRow[i].children.length; j++){
+                keyRow[i].children[j].disabled = false;
+                keyRow[i].children[j].className = "key";
+        }}
+
+        //reset heart images:
+        const heartImage = document.querySelectorAll('.tries img');
+        heartImage.forEach(image =>{
+            image.src = ('images/liveHeart.png');
+        });
+
+        //reset missed:
+        this.missed = 0;
+    }
+    /**
+     * Handles onscreen keyboard button clicks
+     * @param (HTMLButtonElement) button - The clicked button element
+     */
+    handleInteraction(button) {
+        console.log(button);
+
+        //disable button once selected
+        button.disabled = true;       
+    
+        if(this.activePhrase.checkLetter(button)){
+            this.activePhrase.showMatchedLetter(button);
+            button.classList.add('chosen');
+            if(this.checkForWin()){
+                this.gameOver(true);
+            }
+        }else{
+            button.classList.add('wrong');
+            this.removeLife();
+        }
     };
 }
