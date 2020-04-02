@@ -55,6 +55,7 @@ startGameButton.addEventListener('click', (e) =>{
 //Step 9 when user clicks onscreen keyboard buttons:
 //store what onscreenKey user pressed 
 const onscreenKeyboard = document.querySelectorAll('.key');
+console.log(onscreenKeyboard);
 for(let i = 0; i < onscreenKeyboard.length; i++){
     onscreenKeyboard[i].addEventListener('click', (e) =>{
         let onscreenKeyClicked = e.target;
@@ -66,6 +67,24 @@ for(let i = 0; i < onscreenKeyboard.length; i++){
         // game.checkForWin();
         //test handleInteraction
         game.handleInteraction(onscreenKeyClicked);
-  
     });
 };
+
+//add keyup 
+// const overlayDiv = document.querySelector('#overlay');
+// console.log (overlayDiv);
+// if(overlayDiv.className === ('start startKeyup')){
+//     console.log(`in keyup function`)
+//     window.addEventListener('keyup', (e)=>{
+//         let keyPressed = (e.target) 
+//         console.log(`key pressed: ${keyPressed}`);
+//         game.handleInteraction(keyPressed);
+//     });
+// }
+
+window.addEventListener('keyup', (e)=>{
+    console.log(`button clicked: ${e.target}`);
+    let keyPressed = (e.target).textContent;
+    console.log(`key pressed: ${keyPressed}`);
+    game.handleInteraction(keyPressed);
+})

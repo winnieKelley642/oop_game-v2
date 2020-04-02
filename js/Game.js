@@ -54,7 +54,8 @@
         //hide #overlay div
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.style.display = 'none';
-        
+        console.log(overlayDiv);
+
         //store selected phrase into 'activePhrase'
         //calls the getRandomPhrase method to select a Phrase object
         const randomPhrase =  this.getRandomPhrase()
@@ -162,7 +163,7 @@
 
         //disable button once selected
         button.disabled = true;       
-    
+
         if(this.activePhrase.checkLetter(button)){
             this.activePhrase.showMatchedLetter(button);
             button.classList.add('chosen');
