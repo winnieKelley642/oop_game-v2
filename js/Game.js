@@ -50,7 +50,7 @@
      */
     startGame() {
         //reset game board
-        this.resetGame();
+        // this.resetGame();
         //hide #overlay div
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.style.display = 'none';
@@ -122,11 +122,13 @@
         
             gameOverMessage.textContent = (`Aw man! GAME OVER! You lost`);
             overlayDiv.className = ('lose');
+            this.resetGame();
 
         //win
         if(gameWon === true){
             gameOverMessage.textContent = ("Yea Buddy! You Won!");
             overlayDiv.className = ('win');
+            this.resetGame();
         }
     };
 

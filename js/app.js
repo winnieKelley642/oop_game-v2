@@ -40,12 +40,22 @@ function userInput(e){
                 // console.log(passThisButton.textContent);
                 //creating an array to make sure only react if a letter is clicked
                 const validKeyboardButtons = [`a`,`b`,`c`,`d`,`e`,`f`,`g`,`h`,`i`,`j`,`k`,`l`,`m`,`n`,`o`,`p`,`q`,`r`,`s`,`t`,`u`,`v`,`w`,`x`,`y`,`z`];
+                const keyboardClicked = [];
+                console.log(validKeyboardButtons.length);
+                console.log(keyboardClicked.length);
+                
                 for(let x = 0; x <= validKeyboardButtons.length; x++){
                     if(userKeyboardInput === passThisButton.textContent && userKeyboardInput === validKeyboardButtons[x]){
                         // console.log(`match keyboard to onscreen keyboard`);
-                        game.handleInteraction(passThisButton);
+                        for(let y = 0; y <= keyboardClicked.length; y++){
+                            if(userKeyboardInput != keyboardClicked[y]){
+                                keyboardClicked.push(userKeyboardInput);
+                                console.log(keyboardClicked.length);
+                                game.handleInteraction(passThisButton);
+                            }
+                        }
                     }
                 }
-        }}
+            }
+        }
     }
-}
