@@ -119,10 +119,13 @@
         
         //lose
         gameOverMessage.textContent = (`Aw man! GAME OVER! You lost`);
+        this.resetGame();
         overlayDiv.className = ('lose');
+        
         //win
         if(gameWon === true){
             gameOverMessage.textContent = ("Yea Buddy! You Won!");
+            this.resetGame();
             overlayDiv.className = ('win');
         }
     };

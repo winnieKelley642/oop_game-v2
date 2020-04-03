@@ -46,29 +46,61 @@
 // console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 
 //Step 8 create event listener for "Start Game" button on page load
-let game = new Game();
 const startGameButton = document.querySelector('#btn__reset');
-startGameButton.addEventListener('click', (e) =>{
-    game.startGame();
-});
 
-//Step 9 when user clicks onscreen keyboard buttons:
-//store what onscreenKey user pressed 
-const onscreenKeyboard = document.querySelectorAll('.key');
-console.log(onscreenKeyboard);
-for(let i = 0; i < onscreenKeyboard.length; i++){
-    onscreenKeyboard[i].addEventListener('click', (e) =>{
-        let onscreenKeyClicked = e.target;
-        //test checkLetter
-        // game.activePhrase.checkLetter(onscreenKeyClicked);
-        //test showMatchedLetter
-        // game.activePhrase.showMatchedLetter(onscreenKeyClicked);
-        //test checkForWin()
-        // game.checkForWin();
-        //test handleInteraction
-        game.handleInteraction(onscreenKeyClicked);
-    });
-};
+startGameButton.addEventListener('click', (e) =>{
+    let game = new Game();
+    game.startGame();
+    //Step 9 when user clicks onscreen keyboard buttons:
+    //store what onscreenKey user pressed 
+    const onscreenKeyboard = document.querySelectorAll('.key');
+    console.log(onscreenKeyboard);
+    for(let i = 0; i < onscreenKeyboard.length; i++){
+        onscreenKeyboard[i].addEventListener('click', (e) =>{
+            let onscreenKeyClicked = e.target;
+            //test checkLetter
+            // game.activePhrase.checkLetter(onscreenKeyClicked);
+            //test showMatchedLetter
+            // game.activePhrase.showMatchedLetter(onscreenKeyClicked);
+            //test checkForWin()
+            // game.checkForWin();
+            //test handleInteraction
+            game.handleInteraction(onscreenKeyClicked);
+        });
+    };
+
+    //keyboard eventListener
+    window.addEventListener('keyup', userInput);
+    function userInput(e){
+        //get .code, which will display the value of the key @sradms0 provided me with a very helpful article
+        const userKeyboardInputCode = e.code.toLowerCase();
+        // console.log(`user keyboard typed: ${userKeyboardInputCode}`);
+        //get only the first three letters, so that I can check to make sure it is a 'key'
+        const firstThreeLetters = userKeyboardInputCode.slice(0,3);
+        // console.log(`last letter in code is: ${firstThreeLetters}`);
+
+        if(firstThreeLetters === 'key'){
+            const userKeyboardInput = userKeyboardInputCode[3];
+            console.log(userKeyboardInput);
+            const keyRow = document.querySelectorAll('.keyrow');
+            // console.log(`keyRow length: ${keyRow.length}`);
+            for(let i = 0; i < keyRow.length; i++){
+                for(let j = 0; j < keyRow[i].children.length; j++){
+                    let passThisButton = keyRow[i].children[j];
+                    // console.log(passThisButton.textContent);
+                    //creating an array to make sure only react if a letter is clicked
+                    const validKeyboardButtons = [`a`,`b`,`c`,`d`,`e`,`f`,`g`,`h`,`i`,`j`,`k`,`l`,`m`,`n`,`o`,`p`,`q`,`r`,`s`,`t`,`u`,`v`,`w`,`x`,`y`,`z`];
+                    for(let x = 0; x <= validKeyboardButtons.length; x++){
+                        if(userKeyboardInput === passThisButton.textContent && userKeyboardInput === validKeyboardButtons[x]){
+                            // console.log(`match keyboard to onscreen keyboard`);
+                            game.handleInteraction(passThisButton);
+                        }
+                    }
+            }}
+        }
+
+    }
+});
 
 //add keyup 
 // const overlayDiv = document.querySelector('#overlay');
@@ -82,9 +114,10 @@ for(let i = 0; i < onscreenKeyboard.length; i++){
 //     });
 // }
 
-window.addEventListener('keyup', (e)=>{
-    console.log(`button clicked: ${e.target}`);
-    let keyPressed = (e.target).textContent;
-    console.log(`key pressed: ${keyPressed}`);
-    game.handleInteraction(keyPressed);
-})
+// window.addEventListener('keyup', (e)=>{
+//     console.log(`button clicked: ${e.target}`);
+//     let keyPressed = (e.target).code;
+//     console.log(`key pressed: ${keyPressed}`);
+//     game.handleInteraction(keyPressed);
+// })
+
