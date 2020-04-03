@@ -17,7 +17,6 @@ for(let i = 0; i < onscreenKeyboard.length; i++){
     onscreenKeyboard[i].addEventListener('click', (e) =>{
         let onscreenKeyClicked = e.target;
         game.handleInteraction(onscreenKeyClicked);
-  
     });
 };
 
@@ -30,7 +29,6 @@ function userInput(e){
     //get only the first three letters, so that I can check to make sure it is a 'key'
     const firstThreeLetters = userKeyboardInputCode.slice(0,3);
     // console.log(`last letter in code is: ${firstThreeLetters}`);
-
     if(firstThreeLetters === 'key'){
         const userKeyboardInput = userKeyboardInputCode[3];
         console.log(userKeyboardInput);

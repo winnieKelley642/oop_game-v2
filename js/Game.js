@@ -70,12 +70,15 @@
     won */
     checkForWin() {
         console.log(`number of letters in phrase: ${this.phrases.length}`);
-        const numberOfSpaces = (this.activePhrase.split(' ')).length;
-        console.log(`number of spaces: ${numberOfSpaces}`)
         const correctLetter = document.querySelectorAll('.hide');
         console.log(`correctLetter = ${correctLetter.length}`);
-        if(correctLetter.length === 0){
+        const space = document.querySelectorAll('.space')
+        if(correctLetter.length === 1 && space.length === 1){
             console.log(`you win`);
+            this.gameOver(true);
+            return true;
+        }else if(correctLetter.length === 0){
+            console.log('you win');
             this.gameOver(true);
             return true;
         }else{
