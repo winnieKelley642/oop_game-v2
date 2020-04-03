@@ -28,6 +28,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-color: black;
 }
 
 li, ol, ul {
@@ -58,11 +59,16 @@ button {
   -o-transition: var(--transition);
   transition: var(--transition);
   cursor: pointer;
+  background-color: lightblue;
+}
+
+button:hover{
+  background-color: yellowgreen;
 }
 
 #btn__reset {
 	width: 200px;
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .main-container {
@@ -135,11 +141,13 @@ button {
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
+  opacity: 25%;
 }
 
 .wrong {
   background: #f7a964;
   color: #FFFFFF;
+  opacity: 25%;
 }
 
 .btn__reset {
