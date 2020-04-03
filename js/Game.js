@@ -53,14 +53,13 @@
         this.resetGame();
         //hide #overlay div
         const overlayDiv = document.querySelector('#overlay');
-        // overlayDiv.slideDown('slow');
-
         overlayDiv.style.display = 'none';
-        console.log(overlayDiv);
+        
         //store selected phrase into 'activePhrase'
         //calls the getRandomPhrase method to select a Phrase object
-        // const randomPhrase =  this.getRandomPhrase();
-        // randomPhrase.addPhraseToDisplay();
+        // const randomPhrase =  this.getRandomPhrase()
+        // randomPhrase.addPhraseToDisplay()
+        // this.activePhrase =  randomPhrase;
         this.activePhrase =  this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     };
@@ -71,6 +70,8 @@
     won */
     checkForWin() {
         console.log(`number of letters in phrase: ${this.phrases.length}`);
+        const numberOfSpaces = (this.activePhrase.split(' ')).length;
+        console.log(`number of spaces: ${numberOfSpaces}`)
         const correctLetter = document.querySelectorAll('.hide');
         console.log(`correctLetter = ${correctLetter.length}`);
         if(correctLetter.length === 0){
@@ -98,7 +99,6 @@
         console.log(heartImage.length);
         //remove a life from scoreboard
         if(this.missed > 0 && this.missed <= 5){
-            // heartImage[this.missed - 1].classList.add('.animateHeart');
             heartImage[this.missed - 1].src = ('images/lostHeart.png');
         }
         //checks remaining lives:
@@ -117,15 +117,12 @@
         overlayDiv.style.display= 'block';
         const gameOverMessage = document.querySelector('#game-over-message');
         
-        //lose
-        gameOverMessage.textContent = (`Aw man! GAME OVER! You lost`);
-        this.resetGame();
-        overlayDiv.className = ('lose');
-        
+            gameOverMessage.textContent = (`Aw man! GAME OVER! You lost`);
+            overlayDiv.className = ('lose');
+
         //win
         if(gameWon === true){
             gameOverMessage.textContent = ("Yea Buddy! You Won!");
-            this.resetGame();
             overlayDiv.className = ('win');
         }
     };
@@ -169,7 +166,7 @@
 
         //disable button once selected
         button.disabled = true;       
-
+    
         if(this.activePhrase.checkLetter(button)){
             this.activePhrase.showMatchedLetter(button);
             button.classList.add('chosen');

@@ -21,13 +21,13 @@
        //store the phrase div
        const phraseDiv = document.querySelector('#phrase');
        const ul = phraseDiv.firstElementChild;
-       console.log(ul);
+    //    console.log(ul);
 
        //create a loop to go through the number of leters in the activePhrase
-       console.log(`active phrase has ${this.phrase.length} letters`);
+    //    console.log(`active phrase has ${this.phrase.length} letters`);
 
        for(let i = 0; i < this.phrase.length; i++){
-           console.log(`in for loop`);
+        //    console.log(`in for loop`);
            //create li elements
            const li = document.createElement('li');
            ul.appendChild(li);
@@ -48,16 +48,16 @@
     */
    
    checkLetter(letter) {
-       console.log(`in checkLetter()`);
-       console.log(`letter clicked: ${letter.textContent}`);
-       console.log(`phrase is: ${this.phrase}`);
+    //    console.log(`in checkLetter()`);
+    //    console.log(`letter clicked: ${letter.textContent}`);
+    //    console.log(`phrase is: ${this.phrase}`);
        const selectedPhrase = this.phrase;
-       console.log(`selected phrase is: ${selectedPhrase}`);
+    //    console.log(`selected phrase is: ${selectedPhrase}`);
        let selectedLetter = letter.textContent;
-       console.log(`letteris: ${selectedLetter}`);
+    //    console.log(`letteris: ${selectedLetter}`);
 
        //check to see if letter is included in the phrase
-       console.log(`checkLetter: ${selectedPhrase.includes(selectedLetter)}`);
+    //    console.log(`checkLetter: ${selectedPhrase.includes(selectedLetter)}`);
        return selectedPhrase.includes(selectedLetter);
    }
 
@@ -68,8 +68,8 @@
    showMatchedLetter(letter) {
        const matchLetterElement = document.querySelectorAll('.letter');
        matchLetterElement.forEach(letterElement =>{
-           console.log(letterElement);
-           console.log(letterElement.textContent);
+        //    console.log(letterElement);
+        //    console.log(letterElement.textContent);
            if(letterElement.innerHTML === letter.textContent){
                letterElement.classList.remove('hide');
                console.log(letterElement);
