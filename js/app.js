@@ -43,7 +43,9 @@ function userInput(e){
                 
                 for(let x = 0; x <= validKeyboardButtons.length; x++){
                     if(userKeyboardInput === passThisButton.textContent && userKeyboardInput === validKeyboardButtons[x]){
-                        game.handleInteraction(passThisButton);
+                        if(game){
+                            game.handleInteraction(passThisButton);
+                        }
                     }
                 }
             }

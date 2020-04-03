@@ -39,10 +39,15 @@
      * @return {Object} Phrase object chosen to be used
      */
     getRandomPhrase(){
+        //store previous random number to eliminate repeated random phrase
+        let previousRandomNumber;
         let randomNumber = Math.floor(Math.random() * this.phrases.length);
         console.log(randomNumber);
-        let randomPhrase = this.phrases[randomNumber];
-        return randomPhrase;
+        if(previousRandomNumber != randomNumber){
+            previousRandomNumber = randomNumber;
+            let randomPhrase = this.phrases[randomNumber];
+            return randomPhrase;
+        }
     };
 
     /**
