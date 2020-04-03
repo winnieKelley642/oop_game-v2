@@ -49,8 +49,6 @@
      * Begins game by selecting a random phrase and displaying it to user
      */
     startGame() {
-        //reset game board
-        // this.resetGame();
         //hide #overlay div
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.style.display = 'none';
@@ -168,10 +166,13 @@
      */
     handleInteraction(button) {
         console.log(button);
-
+        if(button.disabled){
+            console.log(`in key pressed again`);
+            return;
+        }
         //disable button once selected
         button.disabled = true;       
-    
+        
         if(this.activePhrase.checkLetter(button)){
             this.activePhrase.showMatchedLetter(button);
             button.classList.add('chosen');
