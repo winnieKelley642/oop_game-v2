@@ -53,14 +53,16 @@
         this.resetGame();
         //hide #overlay div
         const overlayDiv = document.querySelector('#overlay');
+        // overlayDiv.slideDown('slow');
+
         overlayDiv.style.display = 'none';
         console.log(overlayDiv);
-
         //store selected phrase into 'activePhrase'
         //calls the getRandomPhrase method to select a Phrase object
-        const randomPhrase =  this.getRandomPhrase()
-        randomPhrase.addPhraseToDisplay()
-        this.activePhrase =  randomPhrase;
+        // const randomPhrase =  this.getRandomPhrase();
+        // randomPhrase.addPhraseToDisplay();
+        this.activePhrase =  this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
     };
 
     /**
@@ -96,6 +98,7 @@
         console.log(heartImage.length);
         //remove a life from scoreboard
         if(this.missed > 0 && this.missed <= 5){
+            // heartImage[this.missed - 1].classList.add('.animateHeart');
             heartImage[this.missed - 1].src = ('images/lostHeart.png');
         }
         //checks remaining lives:
@@ -114,9 +117,9 @@
         overlayDiv.style.display= 'block';
         const gameOverMessage = document.querySelector('#game-over-message');
         
-            gameOverMessage.textContent = (`Aw man! GAME OVER! You lost`);
-            overlayDiv.className = ('lose');
-
+        //lose
+        gameOverMessage.textContent = (`Aw man! GAME OVER! You lost`);
+        overlayDiv.className = ('lose');
         //win
         if(gameWon === true){
             gameOverMessage.textContent = ("Yea Buddy! You Won!");
